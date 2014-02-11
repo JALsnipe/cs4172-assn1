@@ -6,6 +6,10 @@ public class Planet1 : MonoBehaviour {
 	public float rotateSpeed;
 	public float orbitSpeed; //degrees
 
+	public Material defaultMaterial;
+
+	public GameObject rotateAroundObject;
+	
 	// Use this for initialization
 	void Start () {
 	
@@ -25,7 +29,27 @@ public class Planet1 : MonoBehaviour {
 //		transform.Rotate(Vector3.right * Time.deltaTime * RotateSpeedAlongX);
 
 		// rotate around origin w/ a radius of 2? (Vector3.up)
-		transform.RotateAround(Vector3.zero, Vector3.up, orbitSpeed * Time.deltaTime); //degrees/second
+//		transform.RotateAround(rotateAroundObject.transform.position, Vector3.up, orbitSpeed * Time.deltaTime); //degrees/second
 	
+	}
+
+	void OnMouseOver () {
+
+		if (Input.GetMouseButtonDown (0)) {
+
+//			print(renderer.material.color);
+
+			if (renderer.material.color == Color.green) {
+
+				renderer.material = defaultMaterial;
+
+			} else {
+
+				renderer.material.color = Color.green;
+			
+			}
+		}
+
+
 	}
 }

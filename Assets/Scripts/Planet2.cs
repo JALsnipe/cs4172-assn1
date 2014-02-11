@@ -1,11 +1,10 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class Satellite : MonoBehaviour {
+public class Planet2 : MonoBehaviour {
 
-//	public float orbitSpeed;
-	public float degreeSpin;
-//	public float speedAroundPlanet;
+	public float rotateSpeed;
+
 	public GameObject origin;
 
 	public Material defaultMaterial;
@@ -18,13 +17,7 @@ public class Satellite : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
 
-//		transform.RotateAround(Vector3.zero, Vector3.up, orbitSpeed * Time.deltaTime); //degrees/second
-
-//		var degrees = 100;
-
-		transform.RotateAround (origin.transform.position, Vector3.up, degreeSpin * Time.deltaTime);
-
-//		transform.RotateAround (Vector3.zero, Vector3.up, speedAroundPlanet * Time.deltaTime);
+		transform.Rotate(0, rotateSpeed * Time.deltaTime, 0);
 	
 	}
 
@@ -44,5 +37,7 @@ public class Satellite : MonoBehaviour {
 				
 			}
 		}
+		
+		
 	}
 }
