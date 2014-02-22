@@ -8,10 +8,18 @@ public class Satellite : MonoBehaviour {
 //	public float speedAroundPlanet;
 	public GameObject origin;
 
-	public Material defaultMaterial;
+//	public Material defaultMaterial;
+
+	Material mat;
 
 	// Use this for initialization
 	void Start () {
+		Material mat = new Material ("mat");
+		mat = renderer.material;
+//		Satellite.mat = renderer.material;
+		//stored previous material
+		//replace it with something else
+
 	
 	}
 	
@@ -24,19 +32,24 @@ public class Satellite : MonoBehaviour {
 
 		transform.RotateAround (origin.transform.position, Vector3.up, degreeSpin * Time.deltaTime);
 
+		renderer.material = mat;
+
+
 //		transform.RotateAround (Vector3.zero, Vector3.up, speedAroundPlanet * Time.deltaTime);
 	
 	}
 
 	void OnMouseOver () {
+
+//		print ("over satellite");
 		
 		if (Input.GetMouseButtonDown (0)) {
 			
-//			print(renderer.material.color);
+			print(renderer.material.color);
 			
 			if (renderer.material.color == Color.green) {
 				
-				renderer.material = defaultMaterial;
+//				renderer.material = defaultMaterial;
 				
 			} else {
 				
