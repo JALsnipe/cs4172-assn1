@@ -17,10 +17,6 @@ public class Sun : MonoBehaviour {
 
 	Material defaultMaterial;
 
-	// GUI
-	private bool render = false;
-	private Rect windowRect = new Rect (20, 20, 120, 50);
-
 	// Use this for initialization
 	void Start () {
 
@@ -45,7 +41,6 @@ public class Sun : MonoBehaviour {
 				if (sunClicked == false) {
 					sunClicked = true;
 					renderer.material.color = Color.green;
-					render = true;
 					pausePlanets ();
 				}
 
@@ -53,7 +48,6 @@ public class Sun : MonoBehaviour {
 				else {
 					sunClicked = false;
 					renderer.material = defaultMaterial;
-					render = false;
 					resumePlanets ();
 				}
 
@@ -101,28 +95,4 @@ public class Sun : MonoBehaviour {
 
 	}
 
-	public void ShowWindow() {
-		render = true;
-	}
-	
-	public void HideWindow() {
-		render = false;
-	}
-
-	public void OnGUI() {
-//		if (GUI.Button (new Rect (10,20,100,20), "Show Window"))
-//			ShowWindow();
-//		
-//		if (GUI.Button (new Rect (10,60,100,20), "Hide Window"))
-//			HideWindow();
-		
-		if (render) {
-			windowRect = GUI.Window (0, windowRect, DoMyWindow, "My Window");
-		}
-	}
-	
-	public void DoMyWindow(int windowID) {
-		if (GUI.Button (new Rect (10,20,100,20), "Hello World"))
-			print ("Got a click");
-	}
 }
