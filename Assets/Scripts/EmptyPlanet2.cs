@@ -3,10 +3,12 @@ using System.Collections;
 
 public class EmptyPlanet2 : MonoBehaviour {
 
-	public float speed;
+	public static float speed;
 
 	// Use this for initialization
 	void Start () {
+
+		speed = 20.0f;
 	
 	}
 	

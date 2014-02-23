@@ -3,98 +3,75 @@ using System.Collections;
 
 public class Planet1 : MonoBehaviour {
 
-	public float rotateSpeed;
-	public float orbitSpeed; //degrees
+	public static float rotateSpeed;
+//	public float orbitSpeed; //degrees
 
 	public Material defaultMaterial;
 
-	public GameObject rotateAroundObject;
+	bool paused;
 
-	Color color = Color.green;
+	float planet1Orbit;
+	float planet1Rotate;
+	float satSpeed;
 	
 	// Use this for initialization
 	void Start () {
+
+		rotateSpeed = 10.0f;
+
+		paused = false;
+		
+		//		renderer.material = new Material( shaderText );
 	
+		defaultMaterial = new Material( renderer.material );
 	}
 	
 	// Update is called once per frame
 	void Update () {
 
-//		var RotateSpeedAlongY = -10.0;
-//		var RotateSpeedAlongZ = 0.0;
-//		var RotateSpeedAlongX = 0.0;
-
-		// Slowly rotate the object around its axis at 1 degree/second * variable.
-//		transform.Rotate(Vector3.up * Time.deltaTime * RotateSpeedAlongY);
-		transform.Rotate(0, rotateSpeed * Time.deltaTime, 0);
-//		transform.Rotate(Vector3.forward * Time.deltaTime * RotateSpeedAlongZ);
-//		transform.Rotate(Vector3.right * Time.deltaTime * RotateSpeedAlongX);
-
-		// rotate around origin w/ a radius of 2? (Vector3.up)
-//		transform.RotateAround(rotateAroundObject.transform.position, Vector3.up, orbitSpeed * Time.deltaTime); //degrees/second
-
-		var shaderText =
-			"Shader \"Alpha Additive\" {" +
-				"Properties { _Color (\"Main Color\", Color) = (1,1,1,0) }" +
-				"SubShader {" +
-				"	Tags { \"Queue\" = \"Transparent\" }" +
-				"	Pass {" +
-				"		Blend One One ZWrite Off ColorMask RGB" +
-				"		Material { Diffuse [_Color] Ambient [_Color] }" +
-				"		Lighting On" +
-				"		SetTexture [_Dummy] { combine primary double, primary }" +
-				"	}" +
-				"}" +
-				"}";
-
-//		renderer.material = new Material( shaderText );
-		Material greenMat = new Material( shaderText );
-		greenMat.color = color;
-
-//		print (renderer.material);
-
-		defaultMaterial = new Material( renderer.material );
+		transform.Rotate (0, rotateSpeed * Time.deltaTime, 0);
 
 		if (Input.GetMouseButtonDown (0)) {
-			
-			//			print(renderer.material.color);
-			
-			if (renderer.material == defaultMaterial) {
+			Ray ray = Camera.main.ScreenPointToRay (Input.mousePosition);
+			RaycastHit hit;
+			if (Physics.Raycast (ray, out hit) && hit.collider.gameObject.name == "P1") {
 				
-				renderer.material = greenMat;
-//				renderer.material = shaderText;
-				//				renderer.material = "//Assets/Materials/Planet001/Maps/Materials/40_040percentland,8winterspring.mat";
+				if (paused == false) {
+					paused = true;
+					renderer.material.color = Color.green;
+					PausePlanet ();
+				}
 				
-			} else {
-				
-				renderer.material = defaultMaterial;
+				//				if (sunClicked == true) {
+				else {
+					paused = false;
+					renderer.material = defaultMaterial;
+					ResumePlanet ();
+				}
 				
 			}
+			
 		}
 	
 	}
 
-	void OnMouseOver () {
+	void PausePlanet () {
 
-//		print ("over planet1");
+		planet1Orbit = EmptyPlanet1.speed;
+		planet1Rotate = rotateSpeed;
+		satSpeed = Satellite.degreeSpin;
 
-//		if (Input.GetMouseButtonDown (0)) {
-//
-////			print(renderer.material.color);
-//
-//			if (renderer.material.color == Color.green) {
-//
-//				renderer.material = defaultMaterial;
-//				renderer.material = shaderText;
-////				renderer.material = "//Assets/Materials/Planet001/Maps/Materials/40_040percentland,8winterspring.mat";
-//
-//			} else {
-//
-//				renderer.material.color = Color.green;
-//			
-//			}
-//		}
+		EmptyPlanet1.speed = 0.0f;
+		Planet1.rotateSpeed = 0.0f;
+		Satellite.degreeSpin = 0.0f;
 
 
+	}
+
+	void ResumePlanet() {
+
+		EmptyPlanet1.speed = planet1Orbit;
+		rotateSpeed = planet1Rotate;
+		Satellite.degreeSpin = satSpeed;
 	}
 }

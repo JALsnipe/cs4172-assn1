@@ -4,18 +4,22 @@ using System.Collections;
 public class Satellite : MonoBehaviour {
 
 //	public float orbitSpeed;
-	public float degreeSpin;
+	public static float degreeSpin;
 //	public float speedAroundPlanet;
 	public GameObject origin;
 
-//	public Material defaultMaterial;
+	Material defaultMaterial;
 
-	Material mat;
+//	public Material defaultMaterial;
 
 	// Use this for initialization
 	void Start () {
-		Material mat = new Material ("mat");
-		mat = renderer.material;
+//		Material mat = new Material ("mat");
+//		mat = renderer.material;
+
+		defaultMaterial = new Material (renderer.material);
+
+		degreeSpin = -40.0f;
 //		Satellite.mat = renderer.material;
 		//stored previous material
 		//replace it with something else
@@ -31,8 +35,7 @@ public class Satellite : MonoBehaviour {
 //		var degrees = 100;
 
 		transform.RotateAround (origin.transform.position, Vector3.up, degreeSpin * Time.deltaTime);
-
-		renderer.material = mat;
+		transform.Rotate (0, degreeSpin * Time.deltaTime, 0);
 
 
 //		transform.RotateAround (Vector3.zero, Vector3.up, speedAroundPlanet * Time.deltaTime);
@@ -46,16 +49,18 @@ public class Satellite : MonoBehaviour {
 		if (Input.GetMouseButtonDown (0)) {
 			
 			print(renderer.material.color);
+
+			renderer.material.color = Color.green;
 			
-			if (renderer.material.color == Color.green) {
-				
+//			if (renderer.material.color == Color.green) {
+//				
 //				renderer.material = defaultMaterial;
-				
-			} else {
-				
-				renderer.material.color = Color.green;
-				
-			}
+//				
+//			} else {
+//				
+//				renderer.material.color = Color.green;
+//				
+//			}
 		}
 	}
 }
