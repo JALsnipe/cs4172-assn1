@@ -17,6 +17,8 @@ public class CameraController : MonoBehaviour {
 
 	public void OnGUI() {
 
+		GUI.skin.label.fontSize = 20;
+
 //		GUI.matrix = Matrix4x4.TRS (Vector3.zero, Quaternion.AngleAxis (0, new Vector3 (0, 1, 0)), new Vector3 (FloatXSize, FloatYSize, 1));
 
 		// Make a background box

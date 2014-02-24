@@ -17,6 +17,7 @@ public class Planet1 : MonoBehaviour {
 	// GUI
 	private bool render = false;
 	private Rect windowRect = new Rect (1300, 20, 340, 1000);
+	private GUIStyle myStyle;
 	
 	// Use this for initialization
 	void Start () {
@@ -95,6 +96,10 @@ public class Planet1 : MonoBehaviour {
 		//		
 		//		if (GUI.Button (new Rect (10,60,100,20), "Hide Window"))
 		//			HideWindow();
+
+		GUI.skin.label.fontSize = 20;
+		myStyle = new GUIStyle(GUI.skin.button);
+		myStyle.fontSize = 20;
 		
 		if (render) {
 			windowRect = GUI.Window (0, windowRect, DoMyWindow, "Planet 1 Control");
@@ -102,26 +107,26 @@ public class Planet1 : MonoBehaviour {
 	}
 	
 	public void DoMyWindow(int windowID) {
-		if (GUI.Button (new Rect (10, 20, 320, 150), "Orbit Speed + 5")) {
+		if (GUI.Button (new Rect (10, 20, 320, 150), "Orbit Speed + 5", myStyle)) {
 			print ("orbit + 5");
 			EmptyPlanet1.speed += 5.0f;
 		}
 
-		if (GUI.Button (new Rect (10, 180, 320, 150), "Orbit Speed - 5")) {
+		if (GUI.Button (new Rect (10, 180, 320, 150), "Orbit Speed - 5", myStyle)) {
 			print ("orbit - 5");
 			EmptyPlanet1.speed -= 5.0f;
 
 		}
 
-		if (GUI.Button (new Rect (10, 340, 320, 150), "Rotation Speed + 5")) {
+		if (GUI.Button (new Rect (10, 340, 320, 150), "Rotation Speed + 5", myStyle)) {
 			rotateSpeed += 5;
 		}
 
-		if (GUI.Button (new Rect (10, 500, 320, 150), "Rotation Speed - 5")) {
+		if (GUI.Button (new Rect (10, 500, 320, 150), "Rotation Speed - 5", myStyle)) {
 			rotateSpeed -= 5;
 		}
 
-		if (GUI.Button (new Rect (10, 660, 320, 150), "Pause/Resume")) {
+		if (GUI.Button (new Rect (10, 660, 320, 150), "Start/Stop", myStyle)) {
 
 			if (paused == false) {
 				PausePlanet();
@@ -134,7 +139,7 @@ public class Planet1 : MonoBehaviour {
 			}
 		}
 
-		if (GUI.Button (new Rect (10, 820, 320, 150), "Deselect")) {
+		if (GUI.Button (new Rect (10, 820, 320, 150), "Deselect", myStyle)) {
 			renderer.material = defaultMaterial;
 			render = false;
 			if(paused == true) {

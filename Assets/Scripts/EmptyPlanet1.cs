@@ -5,9 +5,6 @@ public class EmptyPlanet1 : MonoBehaviour {
 
 	public static float speed;
 
-	float planet1Rotate;
-	float satSpeed;
-
 	// Use this for initialization
 	void Start () {
 
