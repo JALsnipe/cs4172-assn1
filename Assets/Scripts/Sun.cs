@@ -8,6 +8,7 @@ public class Sun : MonoBehaviour {
 	float planet1Orbit;
 	float planet1Rotate;
 	float satSpeed;
+	float satOSpeed;
 	
 	float planet2Orbit;
 	float planet2Rotate;
@@ -61,6 +62,7 @@ public class Sun : MonoBehaviour {
 		planet1Orbit = EmptyPlanet1.speed;
 		planet1Rotate = Planet1.rotateSpeed;
 		satSpeed = Satellite.degreeSpin;
+		satOSpeed = Satellite.orbitSpeed;
 		
 		planet2Orbit = EmptyPlanet2.speed;
 		planet2Rotate = Planet2.rotateSpeed;
@@ -71,6 +73,7 @@ public class Sun : MonoBehaviour {
 		EmptyPlanet1.speed = 0.0f;
 		Planet1.rotateSpeed = 0.0f;
 		Satellite.degreeSpin = 0.0f;
+		Satellite.orbitSpeed = 0.0f;
 
 		EmptyPlanet2.speed = 0.0f;
 		Planet2.rotateSpeed = 0.0f;
@@ -85,6 +88,7 @@ public class Sun : MonoBehaviour {
 		EmptyPlanet1.speed = planet1Orbit;
 		Planet1.rotateSpeed = planet1Rotate;
 		Satellite.degreeSpin = satSpeed;
+		Satellite.orbitSpeed = satOSpeed;
 		
 		EmptyPlanet2.speed = planet2Orbit;
 		Planet2.rotateSpeed = planet2Rotate;

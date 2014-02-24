@@ -13,6 +13,7 @@ public class Planet1 : MonoBehaviour {
 	float planet1Orbit;
 	float planet1Rotate;
 	float satSpeed;
+	float satOSpeed;
 
 	// GUI
 	private bool render = false;
@@ -67,10 +68,12 @@ public class Planet1 : MonoBehaviour {
 		planet1Orbit = EmptyPlanet1.speed;
 		planet1Rotate = rotateSpeed;
 		satSpeed = Satellite.degreeSpin;
+		satOSpeed = Satellite.orbitSpeed;
 
 		EmptyPlanet1.speed = 0.0f;
 		Planet1.rotateSpeed = 0.0f;
 		Satellite.degreeSpin = 0.0f;
+		Satellite.orbitSpeed = 0.0f;
 
 
 	}
@@ -80,6 +83,7 @@ public class Planet1 : MonoBehaviour {
 		EmptyPlanet1.speed = planet1Orbit;
 		rotateSpeed = planet1Rotate;
 		Satellite.degreeSpin = satSpeed;
+		Satellite.orbitSpeed = satOSpeed;
 	}
 
 	public void ShowWindow() {
@@ -97,9 +101,9 @@ public class Planet1 : MonoBehaviour {
 		//		if (GUI.Button (new Rect (10,60,100,20), "Hide Window"))
 		//			HideWindow();
 
-		GUI.skin.label.fontSize = 20;
+		GUI.skin.label.fontSize = 30;
 		myStyle = new GUIStyle(GUI.skin.button);
-		myStyle.fontSize = 20;
+		myStyle.fontSize = 30;
 		
 		if (render) {
 			windowRect = GUI.Window (0, windowRect, DoMyWindow, "Planet 1 Control");
@@ -108,12 +112,10 @@ public class Planet1 : MonoBehaviour {
 	
 	public void DoMyWindow(int windowID) {
 		if (GUI.Button (new Rect (10, 20, 320, 150), "Orbit Speed + 5", myStyle)) {
-			print ("orbit + 5");
 			EmptyPlanet1.speed += 5.0f;
 		}
 
 		if (GUI.Button (new Rect (10, 180, 320, 150), "Orbit Speed - 5", myStyle)) {
-			print ("orbit - 5");
 			EmptyPlanet1.speed -= 5.0f;
 
 		}

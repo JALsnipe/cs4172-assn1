@@ -11,11 +11,20 @@ public class Planet2 : MonoBehaviour {
 
 	float planet2Orbit;
 	float planet2Rotate;
+	
+	// GUI
+	private bool render = false;
+	private Rect windowRect = new Rect (1300, 20, 340, 1000);
+	private GUIStyle myStyle;
 
 	// Use this for initialization
 	void Start () {
 
 		rotateSpeed = 10.0f;
+
+		paused = false;
+
+		defaultMaterial = new Material( renderer.material );
 	
 	}
 	
@@ -29,17 +38,15 @@ public class Planet2 : MonoBehaviour {
 			RaycastHit hit;
 			if (Physics.Raycast (ray, out hit) && hit.collider.gameObject.name == "P2") {
 				
-				if (paused == false) {
-					paused = true;
+				if (render == false) {
 					renderer.material.color = Color.green;
-					PausePlanet ();
+					render = true;
 				}
 				
 				//				if (sunClicked == true) {
 				else {
-					paused = false;
 					renderer.material = defaultMaterial;
-					ResumePlanet ();
+					render = false;
 				}
 				
 			}
@@ -62,6 +69,71 @@ public class Planet2 : MonoBehaviour {
 		
 		EmptyPlanet2.speed = planet2Orbit;
 		rotateSpeed = planet2Rotate;
+	}
+
+	public void ShowWindow() {
+		render = true;
+	}
+	
+	public void HideWindow() {
+		render = false;
+	}
+	
+	public void OnGUI() {
+		//		if (GUI.Button (new Rect (10,20,100,20), "Show Window"))
+		//			ShowWindow();
+		//		
+		//		if (GUI.Button (new Rect (10,60,100,20), "Hide Window"))
+		//			HideWindow();
+		
+		GUI.skin.label.fontSize = 20;
+		myStyle = new GUIStyle(GUI.skin.button);
+		myStyle.fontSize = 20;
+		
+		if (render) {
+			windowRect = GUI.Window (0, windowRect, DoMyWindow, "Planet 2 Control");
+		}
+	}
+	
+	public void DoMyWindow(int windowID) {
+		if (GUI.Button (new Rect (10, 20, 320, 150), "Orbit Speed + 5", myStyle)) {
+			EmptyPlanet2.speed += 5.0f;
+		}
+		
+		if (GUI.Button (new Rect (10, 180, 320, 150), "Orbit Speed - 5", myStyle)) {
+			EmptyPlanet2.speed -= 5.0f;
+			
+		}
+		
+		if (GUI.Button (new Rect (10, 340, 320, 150), "Rotation Speed + 5", myStyle)) {
+			rotateSpeed += 5;
+		}
+		
+		if (GUI.Button (new Rect (10, 500, 320, 150), "Rotation Speed - 5", myStyle)) {
+			rotateSpeed -= 5;
+		}
+		
+		if (GUI.Button (new Rect (10, 660, 320, 150), "Start/Stop", myStyle)) {
+			
+			if (paused == false) {
+				PausePlanet();
+				paused = true;
+			}
+			
+			else {
+				ResumePlanet();
+				paused = false;
+			}
+		}
+		
+		if (GUI.Button (new Rect (10, 820, 320, 150), "Deselect", myStyle)) {
+			renderer.material = defaultMaterial;
+			render = false;
+			if(paused == true) {
+				paused = false;
+				ResumePlanet();
+			}
+		}
 	}
 	
 }
