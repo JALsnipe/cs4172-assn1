@@ -21,7 +21,7 @@ public class CameraController : MonoBehaviour {
 
 	Vector3 offset;
 
-//	Vector3 origRot;
+	Vector3 origRot;
 	
 	// Use this for initialization
 	void Start () {
@@ -33,7 +33,7 @@ public class CameraController : MonoBehaviour {
 
 		offset = transform.position;
 
-//		origRot = transform.eulerAngles;
+		origRot = transform.eulerAngles;
 
 	}
 	
@@ -45,6 +45,9 @@ public class CameraController : MonoBehaviour {
 	}
 
 	void LateUpdate() {
+
+		transform.eulerAngles = origRot;
+
 		if (followPlanet1) {
 //			transform.eulerAngles = (new Vector3 (90, 0, 0));
 			transform.position = planet1.transform.position + offset;
@@ -76,6 +79,7 @@ public class CameraController : MonoBehaviour {
 
 
 			transform.position = ship.transform.position + new Vector3(5, 0, 0);
+			transform.eulerAngles = (new Vector3 (0, 90, 0));
 //			transform.Rotate (new Vector3 (-90, 90, 0) * 0);
 //			transform.position = new Vector3 (0, 0, 0);
 //			transform.Rotate (new Vector3 (90, 0, 0) * 0);
@@ -191,6 +195,11 @@ public class CameraController : MonoBehaviour {
 			followPlanet2 = false;
 			followPlanet3 = false;
 			followShip = true;
+
+			transform.position = ship.transform.position;
+//			transform.Rotate (new Vector3 (-90, 90, 0) * 0);
+
+			transform.eulerAngles = (new Vector3 (0, 90, 0));
 		}
 
 	}
