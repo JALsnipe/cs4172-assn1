@@ -5,7 +5,7 @@ public class Planet3 : MonoBehaviour {
 
 	public static float rotateSpeed;
 
-	public Material defaultMaterial;
+	Material defaultMaterial;
 
 	bool paused;
 	

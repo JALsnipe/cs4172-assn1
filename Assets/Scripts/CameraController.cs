@@ -29,7 +29,7 @@ public class CameraController : MonoBehaviour {
 		planet1 = GameObject.Find ("P1");
 		planet2 = GameObject.Find ("P2");
 		planet3 = GameObject.Find ("P3");
-		ship = GameObject.Find ("ship");
+		ship = GameObject.Find ("Ship");
 
 		offset = transform.position;
 
@@ -46,6 +46,7 @@ public class CameraController : MonoBehaviour {
 
 	void LateUpdate() {
 
+		// TODO: fix this line to get pitch and yaw working
 		transform.eulerAngles = origRot;
 
 		if (followPlanet1) {
@@ -99,11 +100,11 @@ public class CameraController : MonoBehaviour {
 		cameraStyle.fontSize = 30;
 
 		if (GUI.Button (new Rect (10, 20, 280, 120), "X + 5", cameraStyle)) {
-			print ("increasing x by 5");
+//			print ("increasing x by 5");
 //			defaultCamera = false;
-			print ("before: " + transform.position);
+//			print ("before: " + transform.position);
 			transform.position += new Vector3(5, 0, 0);
-			print ("after: " + transform.position);
+//			print ("after: " + transform.position);
 //			defaultCamera = true;
 		}
 		
@@ -121,25 +122,15 @@ public class CameraController : MonoBehaviour {
 		}
 		
 		if (GUI.Button (new Rect (10, 540, 280, 120), "Pitch + 5", cameraStyle)) {
-			
-			//			if (paused == false) {
-			//				PausePlanet();
-			//				paused = true;
-			//			}
-			//			
-			//			else {
-			//				ResumePlanet();
-			//				paused = false;
-			//			}
+//			print ("before: " + transform.localEulerAngles);
+			transform.localEulerAngles = new Vector3 (5, 0, 0);
+//			print ("after: " + transform.localEulerAngles);
 		}
 		
 		if (GUI.Button (new Rect (10, 670, 280, 120), "Pitch - 5", cameraStyle)) {
-			//			renderer.material = defaultMaterial;
-			//			render = false;
-			//			if(paused == true) {
-			//				paused = false;
-			//				ResumePlanet();
-			//			}
+//			print ("before: " + transform.localEulerAngles);
+			transform.localEulerAngles = new Vector3 (-5, 0, 0);
+//			print ("after: " + transform.localEulerAngles);
 		}
 		
 		if (GUI.Button (new Rect (10, 800, 280, 120), "Yaw + 5", cameraStyle)) {
