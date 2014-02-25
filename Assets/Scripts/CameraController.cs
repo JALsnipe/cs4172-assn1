@@ -21,7 +21,7 @@ public class CameraController : MonoBehaviour {
 
 	Vector3 offset;
 
-	Quaternion originalRotation = new Quaternion(0,0,0,0);
+//	Vector3 origRot;
 	
 	// Use this for initialization
 	void Start () {
@@ -32,6 +32,8 @@ public class CameraController : MonoBehaviour {
 		ship = GameObject.Find ("ship");
 
 		offset = transform.position;
+
+//		origRot = transform.eulerAngles;
 
 	}
 	
@@ -44,23 +46,25 @@ public class CameraController : MonoBehaviour {
 
 	void LateUpdate() {
 		if (followPlanet1) {
-			transform.eulerAngles = (new Vector3 (90, 0, 0));
+//			transform.eulerAngles = (new Vector3 (90, 0, 0));
 			transform.position = planet1.transform.position + offset;
 		}
 
 		if (followPlanet2) {
-			transform.eulerAngles = (new Vector3 (90, 0, 0));
+//			transform.eulerAngles = (new Vector3 (90, 0, 0));
 			transform.position = planet2.transform.position + offset;
 		}
 
 		if (followPlanet3) {
-			transform.eulerAngles = (new Vector3 (90, 0, 0));
+//			transform.eulerAngles = (new Vector3 (90, 0, 0));
 			transform.position = planet3.transform.position + offset;
 		}
 
 		if (defaultCamera) {
-			transform.eulerAngles = (new Vector3 (90, 0, 0));
-			transform.position = new Vector3 (0, 90, 0);
+//			transform.eulerAngles = origRot;
+
+//			transform.Rotate (new Vector3 (90, -90, 0) * 0);
+//			transform.position = new Vector3 (0, 90, 0);
 		}
 
 		if (followShip) {
@@ -68,7 +72,7 @@ public class CameraController : MonoBehaviour {
 //			transform.position = ship.transform.position;
 //			transform.position = new Vector3 (-20, 0, 0);
 //			transform.Rotate (new Vector3 (-90, 90, 0) * 0);
-			transform.eulerAngles = (new Vector3 (0, 90, 0));
+//			transform.eulerAngles = (new Vector3 (0, 90, 0));
 
 
 			transform.position = ship.transform.position + new Vector3(5, 0, 0);
@@ -91,7 +95,12 @@ public class CameraController : MonoBehaviour {
 		cameraStyle.fontSize = 30;
 
 		if (GUI.Button (new Rect (10, 20, 280, 120), "X + 5", cameraStyle)) {
+			print ("increasing x by 5");
+//			defaultCamera = false;
+			print ("before: " + transform.position);
 			transform.position += new Vector3(5, 0, 0);
+			print ("after: " + transform.position);
+//			defaultCamera = true;
 		}
 		
 		if (GUI.Button (new Rect (10, 150, 280, 120), "X - 5", cameraStyle)) {
@@ -139,6 +148,7 @@ public class CameraController : MonoBehaviour {
 
 		// row 2
 		if (GUI.Button (new Rect (300, 20, 280, 120), "Camera Planet 1", cameraStyle)) {
+//			transform.eulerAngles = (new Vector3 (90, 0, 0));
 			defaultCamera = false;
 			followPlanet1 = true;
 			followPlanet2 = false;
@@ -169,8 +179,10 @@ public class CameraController : MonoBehaviour {
 			followPlanet2 = false;
 			followPlanet3 = false;
 			followShip = false;
-//			transform.position = new Vector3(0, 90, 0);
-//			transform.Rotate(new Vector3(90, 0, 0) * 0);
+
+			// reset position to allow transformations
+			transform.position = new Vector3(0, 90, 0);
+			transform.Rotate(new Vector3(90, 0, 0) * 0);
 		}
 		
 		if (GUI.Button (new Rect (590, 150, 280, 120), "Ship Camera", cameraStyle)) {
