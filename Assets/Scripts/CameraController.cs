@@ -44,20 +44,23 @@ public class CameraController : MonoBehaviour {
 
 	void LateUpdate() {
 		if (followPlanet1) {
+			transform.eulerAngles = (new Vector3 (90, 0, 0));
 			transform.position = planet1.transform.position + offset;
 		}
 
 		if (followPlanet2) {
+			transform.eulerAngles = (new Vector3 (90, 0, 0));
 			transform.position = planet2.transform.position + offset;
 		}
 
 		if (followPlanet3) {
+			transform.eulerAngles = (new Vector3 (90, 0, 0));
 			transform.position = planet3.transform.position + offset;
 		}
 
 		if (defaultCamera) {
+			transform.eulerAngles = (new Vector3 (90, 0, 0));
 			transform.position = new Vector3 (0, 90, 0);
-			transform.Rotate (new Vector3 (90, 0, 0) * 0);
 		}
 
 		if (followShip) {
