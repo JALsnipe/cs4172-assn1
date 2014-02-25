@@ -4,8 +4,7 @@ using System.Collections;
 // This script must be attached to the object to be manipulated
 
 public class GUIcontrols : MonoBehaviour {
-//	public float  xRotValue = 0.0f,		// Euler angles
-	public float  xRotValue = 100.0f,		// Euler angles
+	public float  xRotValue = 0.0f,		// Euler angles
 				  yRotValue = 0.0f,
 				  zRotValue = 0.0f;
 	public string xRotString,			// Text input area strings for Euler angles 
@@ -17,9 +16,14 @@ public class GUIcontrols : MonoBehaviour {
 				  GUILayoutWindowRect; 					
 	public bool   autoLayout = false; 	// True if auto layout performed using GUILayout
 
+//	private GUIStyle shipStyle;
+
 	void OnGUI () {
 		// Demonstrate the difference between auto (GUILayout) and manual (GUI) layout.
 		// We suggest that you use GUILayout instead of GUI, for easier coding!
+
+//		shipStyle.fontSize = 12;
+
 		if (autoLayout)
 			GUILayoutWindowRect = GUILayout.Window (0, GUILayoutWindowRect, rotWindowGUILayout, "Euler Angles");
 		else

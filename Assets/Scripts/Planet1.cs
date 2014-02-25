@@ -10,6 +10,8 @@ public class Planet1 : MonoBehaviour {
 
 	bool paused;
 
+//	bool cameraFollow;
+
 	float planet1Orbit;
 	float planet1Rotate;
 	float satSpeed;
@@ -17,7 +19,7 @@ public class Planet1 : MonoBehaviour {
 
 	// GUI
 	private bool render = false;
-	private Rect windowRect = new Rect (1300, 20, 340, 1000);
+	private Rect windowRect = new Rect (1300, 20, 300, 800);
 	private GUIStyle myStyle;
 	
 	// Use this for initialization
@@ -62,6 +64,13 @@ public class Planet1 : MonoBehaviour {
 		}
 	
 	}
+
+//	void LateUpdate() {
+//
+//		if (cameraFollow) {
+//			camera.transform.position = transform.position;
+//		}
+//	}
 
 	void PausePlanet () {
 
@@ -111,24 +120,24 @@ public class Planet1 : MonoBehaviour {
 	}
 	
 	public void DoMyWindow(int windowID) {
-		if (GUI.Button (new Rect (10, 20, 320, 150), "Orbit Speed + 5", myStyle)) {
+		if (GUI.Button (new Rect (10, 20, 280, 120), "Orbit Speed + 5", myStyle)) {
 			EmptyPlanet1.speed += 5.0f;
 		}
 
-		if (GUI.Button (new Rect (10, 180, 320, 150), "Orbit Speed - 5", myStyle)) {
+		if (GUI.Button (new Rect (10, 150, 280, 120), "Orbit Speed - 5", myStyle)) {
 			EmptyPlanet1.speed -= 5.0f;
 
 		}
 
-		if (GUI.Button (new Rect (10, 340, 320, 150), "Rotation Speed + 5", myStyle)) {
+		if (GUI.Button (new Rect (10, 280, 280, 120), "Rotation Speed + 5", myStyle)) {
 			rotateSpeed += 5;
 		}
 
-		if (GUI.Button (new Rect (10, 500, 320, 150), "Rotation Speed - 5", myStyle)) {
+		if (GUI.Button (new Rect (10, 410, 280, 120), "Rotation Speed - 5", myStyle)) {
 			rotateSpeed -= 5;
 		}
 
-		if (GUI.Button (new Rect (10, 660, 320, 150), "Start/Stop", myStyle)) {
+		if (GUI.Button (new Rect (10, 540, 280, 120), "Start/Stop", myStyle)) {
 
 			if (paused == false) {
 				PausePlanet();
@@ -141,7 +150,12 @@ public class Planet1 : MonoBehaviour {
 			}
 		}
 
-		if (GUI.Button (new Rect (10, 820, 320, 150), "Deselect", myStyle)) {
+//		if (GUI.Button (new Rect (10, 670, 280, 120), "Change Camera", myStyle)) {
+////			camera.transform.position = transform.position;
+//			CameraController.FollowPlanet(Planet1);
+//		}
+
+		if (GUI.Button (new Rect (10, 670, 280, 120), "Deselect", myStyle)) {
 			renderer.material = defaultMaterial;
 			render = false;
 			if(paused == true) {
@@ -150,4 +164,9 @@ public class Planet1 : MonoBehaviour {
 			}
 		}
 	}
+
+//	void ChangeCamera() {
+//
+//		cameraFollow = true;
+//	}
 }

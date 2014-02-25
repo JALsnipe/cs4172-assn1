@@ -86,7 +86,7 @@ public class Planet2 : MonoBehaviour {
 		//		if (GUI.Button (new Rect (10,60,100,20), "Hide Window"))
 		//			HideWindow();
 		
-		GUI.skin.label.fontSize = 20;
+//		GUI.skin.label.fontSize = 20;
 		myStyle = new GUIStyle(GUI.skin.button);
 		myStyle.fontSize = 20;
 		
